@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   # deviseコントローラーにストロングパラメータを追加する          
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path_for(resource)
+    home_index_path
+  end
+
   protected
   def configure_permitted_parameters
     # サインアップ時にnameのストロングパラメータを追加

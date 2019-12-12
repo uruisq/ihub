@@ -1,0 +1,13 @@
+<p>
+  <strong><%= t('view.title') %>:</strong>
+  <%= @feed.title %><br>
+  <strong><%= t('view.content') %>:</strong>
+  <%= @feed.content %><br>
+</p>
+<hr>
+<% @feed.items.each do |item| %>
+  <p>ISBN：<%= item.isbn %></p>
+  <p>アイテム：<%= item.content %></p>
+<% end %>
+
+<%= link_to t('view.edit'), edit_feed_path(@feed), class: 'btn btn-dark' %>

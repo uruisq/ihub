@@ -1,0 +1,33 @@
+<%= form_for @feed do |f| %>
+  <% if feed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(feed.errors.count, "件") %>のエラーがあります。</h2>
+      <ul>
+      <% feed.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "form-group">
+    <%= f.label :title, t('view.title'), id: "title" %>
+    <%= f.text_field :title, id: "title", class:"form-control" %>
+  </div>
+  <div class = "form-group">
+  <%= f.label :content, t('view.content'), id: "content" %>
+  <%= f.text_field :content, id: "content", class:"form-control" %>
+  </div>
+
+  <hr>
+  <div>
+    <%= f.fields_for :items do |items_form| %>
+      <%= items_form.label :isbn, "ISBN" %>
+      <%= items_form.text_field :isbn %>
+      <%= items_form.label :content, "タグ" %>
+      <%= items_form.text_field :content %>
+    <% end %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

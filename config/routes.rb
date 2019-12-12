@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :users, only: [:show]
+
+  resources :feeds
+  root to: 'feeds#index'
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+        sessions: 'users/sessions'
   }
-  get 'home/index'
-  root to: "home#index"
 end

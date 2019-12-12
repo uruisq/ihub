@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-12">
+  <h2>おすすめ一覧</h2>
+  <br>
+
+    <div class="content">
+      <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
+        <div class="form-group">
+          <%= f.label :title, t('view.title'), id: "s_title" %>
+          <%= f.search_field :title_cont, id: "s_title" %>
+        </div>
+
+        <%= f.submit '検索', class:"btn btn-dark", name:nil %>
+      <% end %>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :title, t('view.title')) %></th>
+          <th><%= sort_link(@q, :content, t('view.limit')) %></th>
+          <th><%= sort_link(@q, :created_at, t('view.created_at')) %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @feeds.each do |feed| %>
+          <tr>
+            <td><%= feed.title %></td>
+            <td><%= feed.content %></td>
+            <td><%= feed.created_at %></td>
+            <td><%= link_to t('view.show'), feed %></td>
+            <td><%= link_to t('view.edit'), edit_feed_path(feed) %></td>
+            <td><%= link_to t('view.destroy'), feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @feeds %>
+    <br>
+    <%= link_to t('view.new_feed'), new_feed_path, class: 'btn btn-dark' %>
+    </div>
+  </div>
+</div>
