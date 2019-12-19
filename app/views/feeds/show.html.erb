@@ -1,4 +1,6 @@
 <p>
+  <strong><%= t('view.user') %>:</strong>
+  <%= @feed.user.name %><br>
   <strong><%= t('view.title') %>:</strong>
   <%= @feed.title %><br>
   <strong><%= t('view.content') %>:</strong>
@@ -7,7 +9,32 @@
 <hr>
 <% @feed.items.each do |item| %>
   <p>ISBN：<%= item.isbn %></p>
-  <p>アイテム：<%= item.content %></p>
+  <p><%= item.content.html_safe %></p>
 <% end %>
 
+
+<% if current_user != @feed.user && current_user.already_favorited?(@feed) %>
+  <%= link_to '☆', feed_favorite_path(@feed), method: :delete %>
+<% elsif current_user != @feed.user %>
+  <%= link_to '★', feed_favorites_path(@feed), method: :post  %>
+<% end %>
+<%= @feed.favorites.count %>
+
+
+<hr>
+<h4>コメント一覧</h4>
+<% @feed.comments.each do |comment| %>
+  <p><%= comment.user.name %>：<%= comment.content %></p>
+  <p><%= link_to '削除',feed_comment_path(@feed,comment),
+  method: :delete,data: {confirm:'削除してもよろしいですか？'}%></p>
+<% end %>
+
+<%= form_for [@feed, @comment] do |f| %>
+  <%= f.text_field :content %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>
+
+<br>
+<hr>
 <%= link_to t('view.edit'), edit_feed_path(@feed), class: 'btn btn-dark' %>

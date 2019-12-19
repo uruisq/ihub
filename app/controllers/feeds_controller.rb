@@ -2,6 +2,8 @@ class FeedsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
+
+
   def index
     @q = Feed.all.ransack(params[:q])
     @feeds = @q.result(distinct: true).order(id: :desc).page(params[:page])
@@ -10,6 +12,7 @@ class FeedsController < ApplicationController
   def new
     @feed = Feed.new
     @feed.items.build
+    gon.api_key = ENV['Rakuten_API_KEY']
   end
 
   def edit
@@ -23,6 +26,7 @@ class FeedsController < ApplicationController
       redirect_to feeds_path, notice: "登録が完了しました"
     else
       render 'new'
+      @feed.items.build
     end
   end
 
@@ -36,6 +40,7 @@ class FeedsController < ApplicationController
 
   def show
     @items = @feed.items
+    @comment = Comment.new
   end
 
   def destroy

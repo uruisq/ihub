@@ -8,5 +8,8 @@ class User < ApplicationRecord
   has_many :items, through: :feeds
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
+  has_many :favorited_feeds, through: :favorites, source: :feed
+  def already_favorited?(feed)
+    self.favorites.exists?(feed_id: feed.id)
+  end
 end

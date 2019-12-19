@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :feeds
+  resources :feeds do
+    resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
+  end
+  resources :favorites, only: [:destroy]
+
   root to: 'feeds#index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
