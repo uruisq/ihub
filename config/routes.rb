@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
   resources :feeds do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
         sessions: 'users/sessions'
   }
+  resources :users, only: [:show]
 end

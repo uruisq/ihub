@@ -8,30 +8,30 @@
         <div class="form-group">
           <%= f.label :title, t('view.title'), id: "s_title" %>
           <%= f.search_field :title_cont, id: "s_title" %>
+          <%= f.submit '検索', class:"btn btn-dark", name:nil %>
         </div>
-
-        <%= f.submit '検索', class:"btn btn-dark", name:nil %>
       <% end %>
     </div>
 
     <table class="table">
       <thead>
         <tr>
-          <th><%= sort_link(@q, :title, t('view.title')) %></th>
-          <th><%= sort_link(@q, :content, t('view.content')) %></th>
-          <th><%= sort_link(@q, :created_at, t('view.created_at')) %></th>
+          <th></th>
+          <th><%= sort_link(@q, :title, "タイトル") %></th>
+          <th><%= sort_link(@q, :content, "本文") %></th>
+          <th><%= sort_link(@q, :updated_at, "最終更新") %></th>
         </tr>
       </thead>
 
       <tbody>
         <% @feeds.each do |feed| %>
           <tr>
-            <td><%= feed.title %></td>
+            <td width="150"><%= image_tag "/icon/#{feed.user_id}.svg", :size =>'30x30' %>　<%= feed.user.name %></td>
+            <td width="300"><%= link_to feed.title, feed %></td>
             <td><%= feed.content %></td>
-            <td><%= feed.created_at %></td>
-            <td><%= link_to t('view.show'), feed %></td>
-            <td><%= link_to t('view.edit'), edit_feed_path(feed) %></td>
-            <td><%= link_to t('view.destroy'), feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
+            <td align="right" width="100"><%= time_ago_in_words(feed.updated_at) %></td>
+            <td align="right" width="100"><%= link_to "編集", edit_feed_path(feed) %>
+            <%= link_to "削除", feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -39,7 +39,6 @@
 
     <%= paginate @feeds %>
     <br>
-    <%= link_to t('view.new_feed'), new_feed_path, class: 'btn btn-dark' %>
     </div>
   </div>
 </div>

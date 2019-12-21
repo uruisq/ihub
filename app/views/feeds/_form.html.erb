@@ -20,22 +20,16 @@
   </div>
 
   <hr>
-  ISBNなどキーワード
-  <br>
+  ISBNなどキーワード<br>
   <input type="text" id="search_area">
   <button type="button" id="search_button">検索</button>
 
   <br><br>
   <ul></ul>
 
-  <div>
-    <%= f.fields_for :items do |items_form| %>
-      <%= items_form.label :isbn, "ISBN" %>
-      <%= items_form.text_field :isbn, id: "itemisbn", value: "" %><br>
-      <%= items_form.label :content %>
-      <%= items_form.text_area :content, id: "itemcontent", value: "", :size=>"60x5" %>
-    <% end %>
-  </div>
-
+  <%= f.text_field :code, id: "code", class:"form-control" %>
+  <%= f.hidden_field :isbn, id: "isbn", class:"form-control" %>
+  <br><br>
   <%= f.submit '送信する', type: 'button', onclick: 'submit();' %>
+  <br><br>
 <% end %>

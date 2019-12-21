@@ -1,5 +1,6 @@
+<div class="float-right">
+<%= link_to "詳細ページに戻る", @feed, class: 'btn btn-dark' %>
+</div>
 <h2>アイテムの編集</h2>
-
+<%= include_gon %>
 <%= render 'form', feed: @feed %>
-<br>
-<%= link_to t('view.show'), @feed %>

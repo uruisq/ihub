@@ -1,3 +1,9 @@
+<div class="float-right">
+<% if current_user == @feed.user %>
+<%= link_to "投稿編集", edit_feed_path(@feed), class: 'btn btn-dark' %>
+<% end %>
+</div>
+<p></p>
 <p>
   <strong><%= t('view.user') %>:</strong>
   <%= @feed.user.name %><br>
@@ -5,21 +11,19 @@
   <%= @feed.title %><br>
   <strong><%= t('view.content') %>:</strong>
   <%= @feed.content %><br>
+  <%= @feed.isbn %><br>
+  <%= @feed.code.html_safe %><br>
+
 </p>
 <hr>
-<% @feed.items.each do |item| %>
-  <p>ISBN：<%= item.isbn %></p>
-  <p><%= item.content.html_safe %></p>
-<% end %>
-
 
 <% if current_user != @feed.user && current_user.already_favorited?(@feed) %>
-  <%= link_to '☆', feed_favorite_path(@feed), method: :delete %>
+  <%= link_to "☆#{@feed.favorites.count}", feed_favorite_path(@feed), method: :delete %>
 <% elsif current_user != @feed.user %>
-  <%= link_to '★', feed_favorites_path(@feed), method: :post  %>
+  <%= link_to "★#{@feed.favorites.count}", feed_favorites_path(@feed), method: :post %>
+<% else  %>
+☆<%= @feed.favorites.count %>
 <% end %>
-<%= @feed.favorites.count %>
-
 
 <hr>
 <h4>コメント一覧</h4>
@@ -34,7 +38,3 @@
   <br>
   <%= f.submit 'コメントする' %>
 <% end %>
-
-<br>
-<hr>
-<%= link_to t('view.edit'), edit_feed_path(@feed), class: 'btn btn-dark' %>

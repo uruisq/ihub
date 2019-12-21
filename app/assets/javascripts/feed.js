@@ -17,8 +17,8 @@ $(function(){
           var temp = $(`<a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a>`);
           var mono = $(`<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>`);
           $('ul').append(temp);
-          document.getElementById("itemisbn").value = keyword;
-          document.getElementById("itemcontent").value = mono.html();
+          document.getElementById("isbn").value = keyword;
+          document.getElementById("code").value = mono.html();
         }) // each
       } // if
     }); // function(data)

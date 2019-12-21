@@ -1,8 +1,7 @@
 class FeedsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
-
-
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @q = Feed.all.ransack(params[:q])
@@ -11,12 +10,11 @@ class FeedsController < ApplicationController
 
   def new
     @feed = Feed.new
-    @feed.items.build
     gon.api_key = ENV['Rakuten_API_KEY']
   end
 
   def edit
-    @feed.items.build
+    gon.api_key = ENV['Rakuten_API_KEY']
   end
 
   def create
@@ -26,7 +24,6 @@ class FeedsController < ApplicationController
       redirect_to feeds_path, notice: "登録が完了しました"
     else
       render 'new'
-      @feed.items.build
     end
   end
 
@@ -39,7 +36,6 @@ class FeedsController < ApplicationController
   end
 
   def show
-    @items = @feed.items
     @comment = Comment.new
   end
 
@@ -57,7 +53,15 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(
       :title,
       :content,
-      items_attributes: [:id, :feed_id, :isbn, :content, :_destroy]
+      :isbn,
+      :code
     )
+  end
+
+  def correct_user
+    @feed = Feed.find(params[:id])
+    if current_user.id != @feed.user.id
+      redirect_to feeds_path, notice: '作成者ではありません。'
+    end
   end
 end

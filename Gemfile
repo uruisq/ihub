@@ -69,7 +69,7 @@ gem 'enum_help'
 gem 'kaminari', '~> 0.17.0'
 
 # mofmofよりnested_form関連
-gem 'cocoon'
+# gem 'cocoon'
 
 # amazonのapiを使う
 gem 'rakuten_web_service'
