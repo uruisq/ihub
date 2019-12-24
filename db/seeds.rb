@@ -39,13 +39,13 @@ Feed.create!(
   title: "キャリフリー チェアベルト",
   content: "外出先のレストラン等で役立つ、赤ちゃん用補助ベルトです。お食事中に赤ちゃんが転げ落ちたりしないよう、イスに取り付けて使います。ママ・パパの腰に取り付けて、ひざの上でのお食事の際のサポートベルトとしても使用できます。",
   isbn: "4960110222234",
-  code: "<a href="https://item.rakuten.co.jp/kenkoulabo/kenlabb0045y27b2/"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kenkoulabo/cabinet/imgsrc_000/d195/d1954/b0045y27b2.jpg?_ex=128x128"><br>日本エイテックス 【日本正規品】 キャリフリー チェアベルト レッド 01-069</a>"
+  code: "<a href="https://item.rakuten.co.jp/kenkoulabo/kenlabb0045y27b2/"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/kenkoulabo/cabinet/imgsrc_000/d195/d1954/b0045y27b2.jpg?_ex=128x128"><br>日本エイテックス 【日本正規品】 キャリフリー チェアベルト レッド 01-069</a>",
   user_id: "1"
   )
 Feed.create!(
   title: "育児便利グッズ",
   content: "おしりふきを1枚ずつ取り出せる便利な仕様。中には仕切りがあり、片側にオムツ、もう片側におしりふきを入れられます。外側にもポケットがあり、おむつ処理袋などを入れるのに便利です。アカチャンホンポオリジナル商品です。",
   isbn: "4560319045476",
-  code: "<a href="https://item.rakuten.co.jp/lecdirect/4560319045476/"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/oshiri/e00547_top.jpg?_ex=128x128"><br>おしりふき 水99 ディズニー ドナルド 【送料無料】 80枚×20 （1600枚）日本製</a>"
+  code: "<a href="https://item.rakuten.co.jp/lecdirect/4560319045476/"><img src="https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/oshiri/e00547_top.jpg?_ex=128x128"><br>おしりふき 水99 ディズニー ドナルド 【送料無料】 80枚×20 （1600枚）日本製</a>",
   user_id: "1"
   )
