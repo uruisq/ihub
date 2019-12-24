@@ -20,7 +20,7 @@ Rails.application.configure do
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
   config.active_record.verbose_query_logs = true
-  config.assets.debug = true
+  config.assets.debug = false
   config.assets.quiet = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 

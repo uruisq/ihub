@@ -6,9 +6,8 @@
     <div class="content">
       <%= search_form_for(@q, url:root_path, class: 'mb-5') do |f| %>
         <div class="form-group">
-          <%= f.label :title, t('view.title'), id: "s_title" %>
-          <%= f.search_field :title_cont, id: "s_title" %>
-          <%= f.submit '検索', class:"btn btn-dark", name:nil %>
+          <%= f.search_field :title_cont, placeholder: "タイトル検索", id: "s_title" %>
+          <%= f.submit t('view.search'), class:"btn btn-dark", name:nil %>
         </div>
       <% end %>
     </div>
@@ -17,9 +16,9 @@
       <thead>
         <tr>
           <th></th>
-          <th><%= sort_link(@q, :title, "タイトル") %></th>
-          <th><%= sort_link(@q, :content, "本文") %></th>
-          <th><%= sort_link(@q, :updated_at, "最終更新") %></th>
+          <th><%= sort_link(@q, :title, t('view.title')) %></th>
+          <th><%= sort_link(@q, :content, t('view.content')) %></th>
+          <th><%= sort_link(@q, :updated_at, t('view.updated_at')) %></th>
         </tr>
       </thead>
 
@@ -27,11 +26,19 @@
         <% @feeds.each do |feed| %>
           <tr>
             <td width="150"><%= image_tag "/icon/#{feed.user_id}.svg", :size =>'30x30' %>　<%= feed.user.name %></td>
-            <td width="300"><%= link_to feed.title, feed %></td>
+            <td width="250"><%= link_to feed.title, feed %></td>
             <td><%= feed.content %></td>
-            <td align="right" width="100"><%= time_ago_in_words(feed.updated_at) %></td>
-            <td align="right" width="100"><%= link_to "編集", edit_feed_path(feed) %>
-            <%= link_to "削除", feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
+            <td align="right" width="100"><%= time_ago_in_words(feed.updated_at) %>前</td>
+            <td align="right" width="100">
+            ☆<%= feed.favorites.count %>
+            💬<%= feed.comments.count %>
+            </td>
+            <td align="right" width="120">
+            <% if current_user == feed.user %>
+            <%= link_to t('view.edit_feed'), edit_feed_path(feed) %>　
+            <%= link_to t('view.delete'), feed, method: :delete, data: { confirm: '削除しますか？' } %>
+            <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

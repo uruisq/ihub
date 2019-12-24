@@ -1,40 +1,42 @@
 <div class="float-right">
 <% if current_user == @feed.user %>
-<%= link_to "投稿編集", edit_feed_path(@feed), class: 'btn btn-dark' %>
+<%= link_to t('view.edit_feed'), edit_feed_path(@feed), class: 'btn btn-dark' %>
 <% end %>
 </div>
 <p></p>
 <p>
-  <strong><%= t('view.user') %>:</strong>
+  <%= image_tag "/icon/#{@feed.user_id}.svg", :size =>'30x30' %>
   <%= @feed.user.name %><br>
-  <strong><%= t('view.title') %>:</strong>
-  <%= @feed.title %><br>
-  <strong><%= t('view.content') %>:</strong>
-  <%= @feed.content %><br>
-  <%= @feed.isbn %><br>
+  <h5 class="popover-title">
+  <%= @feed.title %></h5>
+  <div class="popover-content">
+  <%= @feed.content %></div>
+  <hr>
   <%= @feed.code.html_safe %><br>
-
 </p>
 <hr>
-
-<% if current_user != @feed.user && current_user.already_favorited?(@feed) %>
-  <%= link_to "☆#{@feed.favorites.count}", feed_favorite_path(@feed), method: :delete %>
-<% elsif current_user != @feed.user %>
-  <%= link_to "★#{@feed.favorites.count}", feed_favorites_path(@feed), method: :post %>
-<% else  %>
-☆<%= @feed.favorites.count %>
+<% if user_signed_in? %>
+  <% if current_user != @feed.user && current_user.already_favorited?(@feed) %>
+    <%= link_to "☆#{@feed.favorites.count}", feed_favorite_path(@feed), method: :delete %>
+    <% elsif current_user != @feed.user %>
+    <%= link_to "★#{@feed.favorites.count}", feed_favorites_path(@feed), method: :post %>
+    <% else  %>
+    ☆<%= @feed.favorites.count %>
+    <% end %>
+  <% else  %>
+  ☆<%= @feed.favorites.count %>
 <% end %>
 
 <hr>
-<h4>コメント一覧</h4>
+<h7>コメント一覧</h7>
 <% @feed.comments.each do |comment| %>
   <p><%= comment.user.name %>：<%= comment.content %></p>
-  <p><%= link_to '削除',feed_comment_path(@feed,comment),
+  <p><%= link_to t('view.delete'),feed_comment_path(@feed,comment),
   method: :delete,data: {confirm:'削除してもよろしいですか？'}%></p>
 <% end %>
 
 <%= form_for [@feed, @comment] do |f| %>
-  <%= f.text_field :content %>
+  <%= f.text_area :content , size: "50x2" %>
   <br>
-  <%= f.submit 'コメントする' %>
+  <%= f.submit t('view.post_comment'), class:"btn btn-outline-dark" %>
 <% end %>

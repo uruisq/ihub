@@ -9,27 +9,34 @@
       </ul>
     </div>
   <% end %>
-
-  <div class = "form-group">
-    <%= f.label :title, t('view.title'), id: "title" %>
-    <%= f.text_field :title, id: "title", class:"form-control" %>
-  </div>
-  <div class = "form-group">
-  <%= f.label :content, t('view.content'), id: "content" %>
-  <%= f.text_field :content, id: "content", class:"form-control" %>
+  <br>
+  <div class = "form-group row">
+    <div class="col-sm-12">
+    <%= f.label :content, "記事内容" %>
+      <%= f.text_field :title, id: "title", placeholder: "タイトル　※1〜50文字", class:"form-control", minlength:1, maxlength:50 %>
+    </div><p></p>
+    <div class="col-sm-12">
+      <%= f.text_area :content, id: "content", placeholder: "本文　※1〜200文字", size: "100x3", class:"form-control", minlength:1, maxlength:200  %>
+    </div>
   </div>
 
   <hr>
-  ISBNなどキーワード<br>
-  <input type="text" id="search_area">
-  <button type="button" id="search_button">検索</button>
+  <div class = "form-group row">
+    <div class="col-sm-3">
+      <%= f.label :search, "ISBN（13桁の数字）などキーワード" %>
+      <input type="text" id="search_area">
+      <button type="button" id="search_button">検索</button>
+    </div>
+    <div class="col-sm-9">
+      <ul><%= feed.code.try(:html_safe) %></ul>
+    </div>
+  </div>
 
-  <br><br>
-  <ul></ul>
-
-  <%= f.text_field :code, id: "code", class:"form-control" %>
-  <%= f.hidden_field :isbn, id: "isbn", class:"form-control" %>
-  <br><br>
-  <%= f.submit '送信する', type: 'button', onclick: 'submit();' %>
-  <br><br>
+  <%= f.text_area :code, id: "code", placeholder: "検索にヒットがあれば、htmlコードがここに出ます", size: "100x2", class:"form-control" %>
+  <%= f.hidden_field :isbn, id: "isbn" %>
+  <br>
+  <%= f.submit '送信する', type: 'button', onclick: 'submit();', class:"btn btn-outline-dark" %>
 <% end %>
+<br><br>
+<br><br>
+<br><br>

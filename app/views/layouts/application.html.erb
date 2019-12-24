@@ -11,18 +11,16 @@
 
   <body>
   <p></p>　
-
-    <%= link_to "投稿一覧", feeds_path, class: 'btn btn-primary' %>
+    <%= link_to image_tag("/logo.png", :size =>'80x40'),feeds_path %>
     <% if user_signed_in? %>　
-      <%= link_to "新規投稿", new_feed_path, class: 'btn btn-success' %>
-
+      <%= link_to t('view.new_feed'), new_feed_path, class: 'btn btn-success' %>
       <div class="float-right">
-        <%= link_to "マイページ", user_path(current_user.id), class: 'btn btn-info' %>　
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>　　
+        <%= link_to t('view.user_path'), user_path(current_user.id), class: 'btn btn-info' %>　
+        <%= link_to t('view.destroy_user_session'), destroy_user_session_path, method: :delete %>　　
       </div>
       <% else %>　
-        <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-info' %>　
-        <%= link_to "ログイン", new_user_session_path %>　　
+        <%= link_to t('view.new_user_registration'), new_user_registration_path, class: 'btn btn-info' %>　
+        <%= link_to t('view.new_user_session'), new_user_session_path %>　　
     <% end %>
 
     <hr>

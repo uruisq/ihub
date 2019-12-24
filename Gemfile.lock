@@ -342,7 +342,7 @@ DEPENDENCIES
   rails_admin (~> 2.0)
   rakuten_web_service
   ransack
-  rspec-rails
+  rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

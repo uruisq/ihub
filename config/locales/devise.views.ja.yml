@@ -1,4 +1,20 @@
 ja:
+  view:
+    content: "本文"
+    destroy_user_session: "ログアウト"
+    edit_user_registration: "ユーザー情報の変更"
+    edit_feed: "編集"
+    feeds: "投稿一覧"
+    feed_path: "詳細ページ"
+    delete: "削除"
+    new_feed: "新規投稿"
+    new_user_registration: "新規登録"
+    new_user_session: "ログイン"
+    post_comment: "コメントする"
+    search: "検索"
+    title: "タイトル"
+    updated_at: "更新"
+    user_path: "マイページ"
   activerecord:
     attributes:
       user:

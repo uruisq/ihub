@@ -4,7 +4,7 @@ $(function(){
     var keyword = $('#search_area').val();
     // リクエストURLを設定する
     $.get('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?', {
-      applicationId: gon.api_key,
+      applicationId: gon.pon,
       keyword: keyword,
       hits: 1
 
@@ -17,8 +17,8 @@ $(function(){
           var temp = $(`<a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a>`);
           var mono = $(`<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>`);
           $('ul').append(temp);
-          document.getElementById("isbn").value = keyword;
-          document.getElementById("code").value = mono.html();
+          $("#isbn").val(keyword);
+          $("#code").val(mono.html());
         }) // each
       } // if
     }); // function(data)

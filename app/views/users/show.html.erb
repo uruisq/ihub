@@ -1,6 +1,6 @@
 <h3><%= image_tag "/icon/#{@user.id}.svg", :size =>'50x50' %>　<%= @user.name %>のページ</h3>
 <p></p>
-<%= link_to "ユーザー情報の変更", edit_user_registration_path, class: 'btn btn-success' %>
+<%= link_to t('view.edit_user_registration'), edit_user_registration_path, class: 'btn btn-success' %>
 <p></p>
 
 <table class="table">
@@ -10,8 +10,8 @@
         <td width="300"><%= link_to feed.title,feed %></td>
         <td><%= feed.content %></td>
         <td align="right" width="100"><%= time_ago_in_words(feed.updated_at) %></td>
-        <td align="right" width="100"><%= link_to "編集", edit_feed_path(feed) %>
-        <%= link_to "削除", feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
+        <td align="right" width="100"><%= link_to t('view.edit_feed'), edit_feed_path(feed) %>
+        <%= link_to t('view.delete'), feed, method: :delete, data: { confirm: '削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>
