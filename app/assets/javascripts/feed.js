@@ -14,8 +14,8 @@ $(function(){
         // console.log(data);
         $('ul').empty();
         $.each(data.Items, function(i, item){
-          var temp = $(`<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>`);
-          var mono = $(`<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>`);
+          var temp = $(<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>);
+          var mono = $(<b><a href="${item.Item.itemUrl}"><img src="${item.Item.mediumImageUrls[0].imageUrl}"><br>${item.Item.itemName}</a></b>);
           $('ul').append(temp);
           $("#isbn").val(keyword);
           $("#code").val(mono.html());
