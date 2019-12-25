@@ -11,7 +11,8 @@
 
   <body>
   <p></p>　
-    <%= link_to image_tag("/logo.png", :size =>'80x40'),feeds_path %>
+    <%= link_to image_tag("/logo.png", :size =>'80x40'),feeds_path %>　
+    <%= link_to t('view.feeds'), feeds_path, class: 'btn btn-danger' %>
     <% if user_signed_in? %>　
       <%= link_to t('view.new_feed'), new_feed_path, class: 'btn btn-success' %>
       <div class="float-right">

@@ -3,7 +3,7 @@
 <%= form_with(model: [@feed, @comment]) do |form| %>
   <p id="error-massage"></p>
   <div class="field">
-    <%= form.text_area :content, placeholder: "コメント", class: "input", id: "edit_comment" %>
+    <%= form.text_area :content, placeholder: "コメント　※1〜50文字", size: "40x2", class: "input", id: "edit_comment" %>
   </div>
   <div class="actions">
     <%= form.submit '編集する', class: "btn btn-dark" %>
