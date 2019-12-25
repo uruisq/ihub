@@ -18,6 +18,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment",__FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
 require 'support/controller_macros'
 
 RSpec.configure do |config|
@@ -100,4 +101,9 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+end
+Capybara.configure do |config|
+  config.run_server = false
+  config.default_driver = :selenium
+  config.app_host = 'http://0.0.0.0:3000/' # localhost(rails s)
 end

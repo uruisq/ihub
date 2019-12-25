@@ -29,14 +29,28 @@
 
 <hr>
 <h7>コメント一覧</h7>
+<p></p>
 <% @feed.comments.each do |comment| %>
-  <p><%= comment.user.name %>：<%= comment.content %></p>
-  <p><%= link_to t('view.delete'),feed_comment_path(@feed,comment),
-  method: :delete,data: {confirm:'削除してもよろしいですか？'}%></p>
+  <p><%= comment.user.name %>：<%= comment.content %>
+  <% if user_signed_in? && current_user.id == comment.user_id %>　　　　
+    <%= link_to t('view.delete'),feed_comment_path(@feed,comment),
+    method: :delete,data: {confirm:'削除してもよろしいですか？'}%></p>
+  <% end %>
 <% end %>
 
-<%= form_for [@feed, @comment] do |f| %>
-  <%= f.text_area :content , size: "50x2" %>
-  <br>
-  <%= f.submit t('view.post_comment'), class:"btn btn-outline-dark" %>
+<% if user_signed_in? %>
+  <%= form_for [@feed, @comment] do |f| %>
+    <%= f.text_area :content , size: "50x2" %>
+    <br>
+    <%= f.submit t('view.post_comment'), class:"btn btn-outline-dark" %>
+  <% end %>
 <% end %>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
