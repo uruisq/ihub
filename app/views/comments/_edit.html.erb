@@ -1,0 +1,13 @@
+<div class="container">
+<div class="box">
+<%= form_with(model: [@feed, @comment]) do |form| %>
+  <p id="error-massage"></p>
+  <div class="field">
+    <%= form.text_area :content, placeholder: "コメント", class: "input", id: "edit_comment" %>
+  </div>
+  <div class="actions">
+    <%= form.submit '編集する', class: "btn btn-dark" %>
+  </div>
+<% end %>
+</div>
+</div>

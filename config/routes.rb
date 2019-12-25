@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'users/show'
   resources :feeds do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :edit, :update, :destroy]
     resources :favorites, only: [:create, :destroy]
   end
   resources :favorites, only: [:destroy]

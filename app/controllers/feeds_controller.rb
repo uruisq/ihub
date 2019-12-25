@@ -36,6 +36,7 @@ class FeedsController < ApplicationController
   end
 
   def show
+    @comments = @feed.comments
     @comment = Comment.new
   end
 

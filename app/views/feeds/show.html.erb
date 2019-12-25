@@ -28,22 +28,13 @@
 <% end %>
 
 <hr>
-<h7>コメント一覧</h7>
+<h6>コメント一覧</h6>
 <p></p>
-<% @feed.comments.each do |comment| %>
-  <p><%= comment.user.name %>：<%= comment.content %>
-  <% if user_signed_in? && current_user.id == comment.user_id %>　　　　
-    <%= link_to t('view.delete'),feed_comment_path(@feed,comment),
-    method: :delete,data: {confirm:'削除してもよろしいですか？'}%></p>
-  <% end %>
-<% end %>
-
+<div id="comments_area">
+  <%= render partial: 'comments/index', locals: { comments: @comments, feed_path: @feed_path } %>
+</div>
 <% if user_signed_in? %>
-  <%= form_for [@feed, @comment] do |f| %>
-    <%= f.text_area :content , size: "50x2" %>
-    <br>
-    <%= f.submit t('view.post_comment'), class:"btn btn-outline-dark" %>
-  <% end %>
+  <%= render partial: 'comments/form', locals: { comment: @comment, feed_path: @feed_path } %>
 <% end %>
 
 <br>
@@ -54,3 +45,4 @@
 <br>
 <br>
 <br>
+

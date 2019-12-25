@@ -15,6 +15,7 @@ ja:
     title: "タイトル"
     updated_at: "更新"
     user_path: "マイページ"
+    do_commnet: コメントする
   activerecord:
     attributes:
       user:
@@ -45,6 +46,8 @@ ja:
       feed:
         title: タイトル
         content: 本文
+      comment:
+        content: コメント
     models:
       user: "ユーザ"
   devise:

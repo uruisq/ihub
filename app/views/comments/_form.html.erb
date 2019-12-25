@@ -1,0 +1,8 @@
+<%= form_with(model: [@feed, comment]) do |form| %>
+  <div class="field">
+    <%= form.text_area :content, placeholder: "コメント　※1〜50文字", size: "40x2", class: "input", minlength:1, maxlength:50 %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'コメントする', class: "btn btn-outline-dark" %>
+  </div>
+<% end %>
