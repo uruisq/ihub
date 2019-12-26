@@ -30,13 +30,13 @@
 <hr>
 <h6>コメント一覧</h6>
 <p></p>
-<div id="comments_area">
-  <%= render partial: 'comments/index', locals: { comments: @comments, feed_path: @feed_path } %>
-</div>
+  <div id="comments_area">
+    <%= render partial: 'comments/index', locals: { comments: @comments, feed_path: @feed_path } %>
+  </div>
+<p></p>
 <% if user_signed_in? %>
   <%= render partial: 'comments/form', locals: { comment: @comment, feed_path: @feed_path } %>
 <% end %>
-
 <br>
 <br>
 <br>

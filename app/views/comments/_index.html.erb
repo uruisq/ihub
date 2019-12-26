@@ -1,3 +1,5 @@
+<table><tr>
+<td>
 <% comments.each do |comment| %>
   <% if comment.id.present? %>
     <p>
@@ -13,5 +15,7 @@
     </p>
   <% end %>
 <% end %>
-<p id="comment"></p>
+</td>
+<td id="comment"></td>
+</tr></table>
 <p id="error_massage"></p>
