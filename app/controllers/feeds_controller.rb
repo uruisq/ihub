@@ -10,11 +10,11 @@ class FeedsController < ApplicationController
 
   def new
     @feed = Feed.new
-    gon.pon = ENV['Rakuten_API_KEY']
+    # gon.pon = ENV['Rakuten_API_KEY']
   end
 
   def edit
-    gon.pon = ENV['Rakuten_API_KEY']
+    # gon.pon = ENV['Rakuten_API_KEY']
   end
 
   def create
