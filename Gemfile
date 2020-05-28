@@ -65,7 +65,7 @@ gem 'jquery-rails'
 # ransack
 gem 'ransack'
 gem 'enum_help'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 
 # mofmofよりnested_form関連
 # gem 'cocoon'
